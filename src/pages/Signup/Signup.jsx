@@ -53,7 +53,7 @@ export default function Signup() {
                 <h1 className="text-3xl font-semibold text-center  uppercase">
                     Sign up
                 </h1>
-                <form className="mt-6" onSubmit={onSubmit}>
+                <form className="mt-6 flex flex-col gap-6" onSubmit={onSubmit}>
 
                     <div className="mb-2">
                         <label
@@ -67,7 +67,7 @@ export default function Signup() {
                             type="email"
                             value={data.email}
                             onChange={(e) => setData({ ...data, email: e.target.value })}
-                            className="block w-full px-4 py-2 mt-2 text-black  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 text-white  bg-transparent border rounded-md focus:border-white focus:ring-white focus:outline-none focus:ring focus:ring-opacity-10"
                         />
                     </div>
                     <div className="mb-2">
@@ -83,12 +83,12 @@ export default function Signup() {
                             type="password"
                             value={data.password}
                             onChange={(e) => setData({ ...data, password: e.target.value })}
-                            className="block w-full px-4 py-2 mt-2 text-black  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2 text-white  bg-transparent border rounded-md focus:border-white focus:ring-white focus:outline-none focus:ring focus:ring-opacity-10"
                         />
                     </div>
 
                     <div className="mt-6">
-                        <button type='submit' className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md ">
+                        <button type='submit' className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform border-2 rounded-md ">
                             Sign Up
                         </button>
                     </div>
@@ -96,7 +96,7 @@ export default function Signup() {
 
 
 
-                <div onClick={() => navigate('/login')} className="mt-8 text-xs font-light text-center">
+                <div onClick={() => navigate('/login')} className="mt-8 text-xs text-black font-normal text-center">
                     {" "}
                     Already have an account?{" "}
                     <a

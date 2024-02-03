@@ -15,7 +15,7 @@ const Home = () => {
 
     useEffect(() => {
         const API_KEY = "7303258013f10842f9d639254807ac00"
-        axios(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}&units=metric`).then((res) => {
+        axios(`https://api.openweathermap.org/data/2.5/weather?q=${search ? search : "Delhi"}&appid=${API_KEY}&units=metric`).then((res) => {
             console.log(res.data);
             setWeatherData(res.data)
 

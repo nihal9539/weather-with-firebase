@@ -117,7 +117,6 @@ const Sidebar = () => {
                     </div>
                 </aside>
             }
-            {/* <TaskModel setModelOpen={setModelOpen} modelOpen={modelOpen} /> */}
         </div>
     )
 }

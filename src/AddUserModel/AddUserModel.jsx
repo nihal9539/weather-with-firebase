@@ -12,6 +12,7 @@ import DatePicker from 'react-date-picker';
 
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+import { IoMdArrowBack } from 'react-icons/io';
 
 
 export default function AddUserModel({ modelOpen, setModelOpen }) {
@@ -32,8 +33,10 @@ export default function AddUserModel({ modelOpen, setModelOpen }) {
     const [date, setDate] = useState(new Date());
     const [data, setData] = useState({
 
-        title: "",
-        description: "",
+        username: "",
+        password: "",
+        email: "",
+        active: false,
     })
 
 
@@ -79,12 +82,35 @@ export default function AddUserModel({ modelOpen, setModelOpen }) {
             >
                 <Box sx={style} width={`${windowWidth > 600 ? "40%" : "100%"}`} height={`${windowWidth > 500 ? "75vh" : "100vh"}`}>
                     <form className='flex flex-col justify-between items-center  h-full overflow-scroll gap-2' onSubmit={handleSubmit}>
+                        <div className=' w-full'>
+                            <IoMdArrowBack className='cursor-pointer' size={25} onClick={() => setModelOpen(false)} />
+                        </div>
+                        <div className='w-full'>
+                            <div className="w-full space-y-12">
+                                <div className=" flex flex-row gap-3">
+                                    <label for="large-input" className="block mb-2 text-sm font-medium   text-black">Username</label>
+                                    <input required value={data.title} onChange={(e) => setData({ ...data, username: e.target.value })} type="text" className="block w-full p-2 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                </div>
+                                <div className=" flex flex-row gap-3">
+                                    <label for="large-input" className="block mb-2 text-sm font-medium   text-black">Email</label>
+                                    <input required value={data.title} onChange={(e) => setData({ ...data, email: e.target.value })} type="email" className="block w-full p-2 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                </div>
+                                <div className=" flex flex-row gap-3">
+                                    <label for="large-input" className="block mb-2 text-sm font-medium   text-black">Password</label>
+                                    <input required value={data.title} onChange={(e) => setData({ ...data, password: e.target.value })} type="text" className="block w-full p-2 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                </div>
+                                <div className=" flex flex-row gap-3">
+                                    <label for="large-input" className="block mb-2 text-sm font-medium   text-black">Date </label>
 
-                        hiiii
+                                    <DatePicker onChange={setDate} required value={date} />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <button type='submit' className='p-2 bg-blue-500 rounded-lg px-8 text-white'>Add</button>
+                        </div>
                     </form>
-
-
-
                 </Box>
             </Modal>
         </div>

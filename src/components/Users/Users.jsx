@@ -1,8 +1,3 @@
-
-
-import { data } from "../../data/text";
-import { useTable } from "react-table";
-import Table from "../Table/Table";
 import AddUserModel from "../../AddUserModel/AddUserModel";
 import { useState } from "react";
 
@@ -20,31 +15,59 @@ function Users() {
   {
     username:"nihal"
   },
+  {
+    username:"nihal"
+  },
+  {
+    username:"nihal"
+  },
+  {
+    username:"nihal"
+  },
+  {
+    username:"nihal xerdcf"
+  },
+  {
+    username:"nihal"
+  },
+  {
+    username:"nihal"
+  },
+  {
+    username:"nihal xerdcf"
+  },
+  {
+    username:"nihal wzxredctfvyg"
+  },
  ]
 
  const [ modelOpen,setModelOpen] = useState(false)
+
+ const handleModel = ()=>{
+  setModelOpen(!modelOpen)
+ }
   return (
  
 
 
-    <div className='p-4 sm:ml-64 gap-2  flex flex-col h-auto min-h-screen text-white'>
+    <div className='p-10 sm:ml-64 gap-2  flex flex-col h-auto min-h-screen text-white'>
       <div className="w-full flex justify-end">
-        <button className="p-2 px-6 bg-transparent border rounded-lg backdrop-blur-md hover:backdrop-blur-xl ">Add User</button>
+        <button className="p-2 px-6 bg-transparent border rounded-lg backdrop-blur-md hover:backdrop-blur-xl " onClick={handleModel}>Add User</button>
       </div>
       <div className='  px-5 py-3 backdrop-blur-3xl  rounded-lg border border-gray-200'>
         <div className='flex flex-row w-full gap-4 items-center justify-center text-white   p-3'>
           <div className='w-3/12'>Username</div>
           <div className='w-3/12'>Added Date</div>
           <div className='w-3/12'>Status</div>
-          <div className='w-3/12 '>Actions</div>
+          <div className='w-3/12'>Actions</div>
         </div>
       </div>
-      <div className='  px-5 rounded-md border '>
+      <div className='px-5 h-96 rounded-md border backdrop-blur-sm overflow-y-scroll'>
        {datas.map((datass)=>{
         return(
           <>
           <div className='flex flex-row w-full gap-4 items-center justify-center text-white   p-3'>
-          <div className='w-3/12'>Mohammed Nihal</div>
+          <div className='w-3/12'>{datass.username}</div>
           <div className='w-3/12'>10/2/2025</div>
           <div className='w-3/12'>Active</div>
           <div className='w-3/12 flex flex-row gap-2 '>
@@ -78,7 +101,7 @@ function Users() {
                     </div>
                 ))} */}
 
-                {/* <AddUserModel modelOpen={modelOpen} setModelOpen={setModelOpen}/> */}
+                <AddUserModel modelOpen={modelOpen} setModelOpen={setModelOpen}/>
     </div>
   );
 }

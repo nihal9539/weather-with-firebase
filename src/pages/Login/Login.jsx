@@ -43,20 +43,20 @@ export default function Login() {
                 <h1 className="text-3xl font-semibold text-center  uppercase">
                     Sign in
                 </h1>
-                <form className="mt-6" onSubmit={onLogin}>
+                <form className="mt-6 flex flex-col gap-4"  onSubmit={onLogin}>
                     <div className="mb-2">
                         <label
 
                             className="block text-sm font-semibold "
                         >
-                            email
+                            Email
                         </label>
                         <input
                         required
                             type="text"
                             value={data.email}
                             onChange={(e) => setData({ ...data, email: e.target.value })}
-                            className="block w-full px-4 py-2 mt-2 text-black  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2   bg-transparent border rounded-md focus:border-gray-600 focus:ring-white text-white focus:outline-none focus:ring focus:ring-opacity-10"
                         />
                     </div>
                     <div className="mb-2">
@@ -72,7 +72,7 @@ export default function Login() {
                             type="password"
                             value={data.password}
                             onChange={(e) => setData({ ...data, password: e.target.value })}
-                            className="block w-full px-4 py-2 mt-2 text-black  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                            className="block w-full px-4 py-2 mt-2   bg-transparent border rounded-md focus:border-gray-600 focus:ring-white text-white focus:outline-none focus:ring focus:ring-opacity-10"
                         />
                     </div>
                    <div className='font-bold flex  justify-end'>
@@ -80,7 +80,7 @@ export default function Login() {
                    </div>
 
                     <div className="mt-6">
-                        <button type='submit' className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md ">
+                        <button type='submit' className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform  border rounded-md ">
                             Login
                         </button>
                     </div>
@@ -90,15 +90,10 @@ export default function Login() {
 
                 <NavLink to={'/signup'}>
 
-                    <div to={'/signup'} className="mt-8 text-xs font-light text-center ">
-                        {" "}
-                        Don't have an account?{" "}
-                        <a
-                            href="#"
-                            className="font-medium  hover:underline"
-                        >
-                            Sign Up
-                        </a>
+                    <div to={'/signup'} className="mt-8 text-xs font-normal text-black text-center ">
+                        Don't have an account?
+                        <a  href="#"
+                            className="font-medium  hover:underline" > Sign Up</a>
                     </div>
                 </NavLink>
             </div>
