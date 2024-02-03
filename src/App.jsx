@@ -12,6 +12,7 @@ import Signup from './pages/Signup/Signup';
 import Layout from './pages/Layout/Layout';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './config/firebase-config';
+import Users from './components/Users/Users'
 
 function App() {
   // const user = localStorage.getItem('user')
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route element={<Layout />} >
           <Route path='/' element={user ? <Home /> : <Navigate to={'/login'} />} />
+        <Route path="/users" element={user ?  <Users /> :<Navigate to={'/login'} /> } />
         </Route>
         <Route path="/login" element={user ? <Navigate to={'/'} /> : <Login />} />
         <Route path="/signup" element={user ? <Navigate to={'/'} /> : <Signup />} />

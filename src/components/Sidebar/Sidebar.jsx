@@ -76,12 +76,6 @@ const Sidebar = () => {
                             </div>
                         </li>
                         <li>
-                            <span onClick={handlemodelopen} className="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group">
-                                <IoMdAdd size={30} />
-                                <span className="ms-3">Add Task</span>
-                            </span>
-                        </li>
-                        <li>
                             <div onClick={handleLogout} className="flex items-center p-2 text-gray-900 rounded-lg text-white hover:bg-gray-100 hover:bg-gray-700 group">
                                 <TbLogout2 size={30} />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Log Out</span>
@@ -93,31 +87,26 @@ const Sidebar = () => {
                 </div>
             </div>) :
                 <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-                    <div className="h-full px-3 py-4 overflow-y-auto bg-transparent backdrop-blur-sm ">
-                        <a href="https://flowbite.com/" className="flex items-center ps-2.5 mb-5">
+                    <div className="h-full px-3 py-8  overflow-y-auto bg-transparent backdrop-blur-sm ">
+                        <div className="flex items-center ps-2.5 mb-5">
                             <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">Weather App</span>
-                        </a>
+                        </div>
                         <ul className="space-y-6 font-medium">
                             <li>
-                                <div onClick={() => navigate('/')} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <div onClick={() => navigate('/')} className="flex items-center p-2 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                     <IoHomeOutline size={30} />
                                     <span className="flex-1 ms-3 whitespace-nowrap">Home</span>
                                 </div>
                             </li>
                             <li>
-                                <div onClick={() => navigate('/user-task')} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <div onClick={() => navigate('/users')} className="flex items-center p-2 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                     <FaUserGroup size={30} />
-                                    <span className="flex-1 ms-3 whitespace-nowrap">My Task</span>
+                                    <span className="flex-1 ms-3 whitespace-nowrap">Users</span>
                                 </div>
                             </li>
+
                             <li>
-                                <span onClick={handlemodelopen} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                    <IoMdAdd size={30} />
-                                    <span className="ms-3">Add Task</span>
-                                </span>
-                            </li>
-                            <li>
-                                <div onClick={handleLogout} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <div onClick={handleLogout} className="flex items-center p-2 py-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                     <TbLogout2 size={30} />
                                     <span className="flex-1 ms-3 whitespace-nowrap">Log Out</span>
                                 </div>
