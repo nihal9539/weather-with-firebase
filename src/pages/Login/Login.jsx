@@ -19,8 +19,10 @@ export default function Login() {
         signInWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
             const user = userCredential.user;
-            localStorage.setItem('user',user.uid)
-            window.location.assign('/')
+            console.log(user.uid);
+            // localStorage.setItem('user',user.uid)
+            navigate('/')
+            // window.location.assign('/')
         })
         .catch((error) => {
             toast.error("Check email and password",{ position: "top-right" })
