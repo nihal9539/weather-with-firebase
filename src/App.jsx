@@ -13,21 +13,22 @@ import Layout from './pages/Layout/Layout';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './config/firebase-config';
 import Users from './components/Users/Users'
+import EditModel from './components/EditModel/EditModel'
 
 
 function App() {
   // const user = localStorage.getItem('user')
   const [user, loading] = useAuthState(auth)
-  console.log(user, loading);
 
 
   return (
-    <div className='bg-[url(./img-1.jpg)]  w-full h-screen bg-cover'>
+    <div className='bg-[url(./img-1.jpg)]  w-full h-screen bg-cover' style={{}}>
       <BrowserRouter>
       <Routes>
         <Route element={<Layout />} >
           <Route path='/' element={user ? <Home /> : <Navigate to={'/login'} />} />
         <Route path="/users" element={user ?  <Users /> :<Navigate to={'/login'} /> } />
+        <Route path="/:id" element={user ?  <EditModel /> :<Navigate to={'/login'} /> } />
         </Route>
         <Route path="/login" element={user ? <Navigate to={'/'} /> : <Login />} />
         <Route path="/signup" element={user ? <Navigate to={'/'} /> : <Signup />} />

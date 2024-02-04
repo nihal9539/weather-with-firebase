@@ -26,12 +26,11 @@ function Users() {
         }
     })
 }, [])
-console.log(data);
   return (
 
 
 
-    <div className='p-10 sm:ml-64 gap-2  flex flex-col h-auto min-h-screen text-white'>
+    <div className='p-10 sm:ml-64 gap-2  flex flex-col  h-full text-white'>
       <div className="w-full flex justify-end">
         <button className="p-2 px-6 bg-transparent border rounded-lg backdrop-blur-md hover:backdrop-blur-xl " onClick={handleModel}>Add User</button>
       </div>

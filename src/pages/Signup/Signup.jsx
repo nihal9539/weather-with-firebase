@@ -26,7 +26,7 @@ export default function Signup() {
           .then((userCredential) => {
               // Signed in
               const user = userCredential.user;
-              console.log(user.uid);
+              toast.success("Sign up")
          
               navigate("/")
               // ...

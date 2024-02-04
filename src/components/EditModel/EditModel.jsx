@@ -1,87 +1,73 @@
-import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-
-import Modal from '@mui/material/Modal';
-
-import { ref, set } from "firebase/database";
-// import { db } from '../../config/firebase-config';
-import { uid } from 'uid';
+import { onValue, ref, update } from 'firebase/database';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { auth, db } from '../../config/firebase-config';
 import { toast } from 'react-toastify';
 import DatePicker from 'react-date-picker';
-
-
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
-import { IoMdArrowBack } from 'react-icons/io';
-import { auth, db } from '../../config/firebase-config';
+import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-
-
-export default function AddUserModel({ modelOpen, setModelOpen }) {
-    const uuid = uid()
-    const windowWidth = window.innerWidth
-    const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        bgcolor: 'background.paper',
-        borderRadius: "1rem",
-        boxShadow: 24,
-        p: 4,
-
-
-    };
-    const [user, loading] = useAuthState(auth)
-
+const EditModel = () => {
+    const navigate = useNavigate()
+    const { id } = useParams()
     const [date, setDate] = useState(new Date());
-    const [data, setData] = useState({
 
+    const [data, setData] = useState({
         username: "",
-        status: "active",
+        status: "",
+        date: date.toISOString(),
     })
 
 
+    // funtion for updating existing task
+    const [user,loading] = useAuthState(auth)
 
-
-
-    // funtion for creating task
-
-    const handleSubmit =  (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // seving user data to real time database
-        set(ref(db, 'users/' + user.uid + "/" +uuid),
-            {
-                uid: uuid,
-                username: data.username,
-                status: data.status,
-                date: date.toISOString()
-            }
+        update(ref(db, 'users/' + user.uid + "/" + id), {
+
+            username: data.username,
+            status: data.status,
+            date: date.toISOString()
+
+        }
+
         ).then(() => {
-            toast.success("Task added",{position:"bottom-right"})
-            setDate(new Date())
+            toast.success("Updated")
+            navigate("/users")
+
             setData({
-                username: "",
-                status: "active",
-    
-    
+                description: "",
+                title: ""
             })
-        }).catch(() => {
-            toast.error("Something wrong")
 
         })
-
-
-
-
-        setModelOpen(false)
+            .catch((err) => {
+                console.log(err);
+            })
 
 
     }
 
+    useEffect(() => {
+        onValue(ref(db, 'users/' + user.uid + "/" + id), (snapdhot) => {
+            setData({})
+            const data = snapdhot.val();
+            if (data !== null) {
+                
+                setData({
+                    ...data,
+                    username: data.username,
+                    status:data.status
 
-    // Function to handle radio button change
+                })
+                
+                setDate(new Date(data.date))
+
+            }
+        })
+    }, [])
+  
+
     const handleOptionChange = (value) => {
         // setSelectedOption(value);
         setData({
@@ -89,21 +75,14 @@ export default function AddUserModel({ modelOpen, setModelOpen }) {
             status:value
         })
     };
-    return (
-        <div>
 
-            <Modal
-                open={modelOpen}
-                onClose={() => setModelOpen(false)}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
-                <Box sx={style} width={`${windowWidth > 600 ? "40%" : "100%"}`} height={`${windowWidth > 500 ? "75vh" : "100vh"}`}>
-                    <form className='flex flex-col justify-between items-center  h-full overflow-scroll gap-2' onSubmit={handleSubmit}>
-                        <div className=' w-full'>
-                            <IoMdArrowBack className='cursor-pointer' size={25} onClick={() => setModelOpen(false)} />
-                        </div>
-                        <div className='w-full'>
+  return (
+    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+    <div className="w-full p-8 m-auto bg-white rounded-md h-full shadow-xl lg:max-w-xl">
+
+        <form className='flex flex-col justify-between items-center  h-full overflow-scroll gap-2' onSubmit={handleSubmit}>
+          
+            <div className='w-full'>
                             <div className="w-full space-y-12">
                                 <div className=" flex flex-row gap-3">
                                     <label for="large-input" className="block mb-2 text-sm font-medium   text-black">Username</label>
@@ -138,12 +117,12 @@ export default function AddUserModel({ modelOpen, setModelOpen }) {
                             </div>
                         </div>
 
-                        <div>
-                            <button type='submit' className='p-2 bg-blue-500 rounded-lg px-8 text-white'>Add</button>
-                        </div>
-                    </form>
-                </Box>
-            </Modal>
-        </div>
-    );
+            <div className='mt-8 m-2'>
+                <button type='submit' className='p-2 bg-blue-500 rounded-lg px-6 text-white'>Update</button></div>
+        </form>
+    </div>
+</div>
+  )
 }
+
+export default EditModel

@@ -22,7 +22,7 @@ const Home = () => {
         })
     }, [search])
 
-    const handleSubmit =(e)=>{
+    const handleSubmit = (e) => {
         e.preventDefault();
         setSearch(value)
 
