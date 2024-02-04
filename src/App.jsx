@@ -1,9 +1,7 @@
 import './App.css'
 import Home from './pages/Home/Home'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-// import Signup from './components/Signup/Signup'
-// import Login from './components/Login/Login'
-// import TaskEdit from './components/TaskEdit/TaskEditModel'
+
 import PasswordReset from './components/PasswordReset/PasswordReset'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,11 +12,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './config/firebase-config';
 import Users from './components/Users/Users'
 import EditModel from './components/EditModel/EditModel'
-import backgroundImgae from "./assets/image/img-1.jpg"
 
 
 function App() {
-  // const user = localStorage.getItem('user')
   const [user, loading] = useAuthState(auth)
 
 

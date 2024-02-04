@@ -7,13 +7,11 @@ import drizzle_icon from "../../assets/image/drizzle.png"
 import rain_icon from "../../assets/image/clear.png"
 import snow_icon from "../../assets/image/snow.png"
 import thunderstorm_icon from "../../assets/image/thunderstorm.png"
-// import thunderstorm_icon from "../../assets/image/thunderstorm.png"
 import { BiSearchAlt2 } from 'react-icons/bi'
 import WeatherCard from '../../components/WeatherCard/WeatherCard'
 const Home = () => {
     const [search, setSearch] = useState("")
     const [icon, setIcon] = useState(clear_icon)
-    // console.log(icon);
     const [weatherData, setWeatherData] = useState({})
     const [weatherIcon, setWeatherIcon] = useState()
     const [value, setValue] = useState()

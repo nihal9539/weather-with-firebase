@@ -69,7 +69,6 @@ const EditModel = () => {
   
 
     const handleOptionChange = (value) => {
-        // setSelectedOption(value);
         setData({
             ...data,
             status:value

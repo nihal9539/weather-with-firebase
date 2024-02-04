@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
 import { ref, set } from "firebase/database";
-// import { db } from '../../config/firebase-config';
 import { uid } from 'uid';
 import { toast } from 'react-toastify';
 import DatePicker from 'react-date-picker';
@@ -15,7 +14,6 @@ import 'react-calendar/dist/Calendar.css';
 import { IoMdArrowBack } from 'react-icons/io';
 import { auth, db } from '../../config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 
 export default function AddUserModel({ modelOpen, setModelOpen }) {
@@ -83,7 +81,6 @@ export default function AddUserModel({ modelOpen, setModelOpen }) {
 
     // Function to handle radio button change
     const handleOptionChange = (value) => {
-        // setSelectedOption(value);
         setData({
             ...data,
             status:value
