@@ -21,7 +21,6 @@ const Sidebar = () => {
            toast.error("Log Out")
             console.log("Signed out successfully")
             navigate("/login");
-            window.location.reload()
         }).catch((error) => {
             console.log(error);
 

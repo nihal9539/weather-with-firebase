@@ -5,10 +5,15 @@ import clear_icon from "../../assets/image/clear.png"
 import cloud_icon from "../../assets/image/cloud.png"
 import drizzle_icon from "../../assets/image/drizzle.png"
 import rain_icon from "../../assets/image/clear.png"
-import snow_icon from "../../assets/image/clear.png"
+import snow_icon from "../../assets/image/snow.png"
+import thunderstorm_icon from "../../assets/image/thunderstorm.png"
+// import thunderstorm_icon from "../../assets/image/thunderstorm.png"
 import { BiSearchAlt2 } from 'react-icons/bi'
+import WeatherCard from '../../components/WeatherCard/WeatherCard'
 const Home = () => {
     const [search, setSearch] = useState("")
+    const [icon, setIcon] = useState(clear_icon)
+    // console.log(icon);
     const [weatherData, setWeatherData] = useState({})
     const [weatherIcon, setWeatherIcon] = useState()
     const [value, setValue] = useState()
@@ -17,17 +22,57 @@ const Home = () => {
         const API_KEY = "7303258013f10842f9d639254807ac00"
         axios(`https://api.openweathermap.org/data/2.5/weather?q=${search ? search : "Delhi"}&appid=${API_KEY}&units=metric`).then((res) => {
             console.log(res.data);
+            console.log(res.data.weather[0].icon);
+            if (res.data.weather[0].icon == "01d" || res.data.weather[0].icon == "01n") {
+                setIcon(clear_icon)
+
+            }
+            else if (res.data.weather[0].icon == "04d" || res.data.weather[0].icon == "04n") {
+
+                setIcon(drizzle_icon)
+            }
+            else if (res.data.weather[0].icon == "02d" || res.data.weather[0].icon == "02n") {
+
+                setIcon(cloud_icon)
+            }
+            else if (res.data.weather[0].icon == "03d" || res.data.weather[0].icon == "03n") {
+                setIcon(drizzle_icon)
+
+            }
+            else if (res.data.weather[0].icon == "09d" || res.data.weather[0].icon == "09n") {
+                setIcon(rain_icon)
+
+            }
+            else if (res.data.weather[0].icon == "010d" || res.data.weather[0].icon == "010n") {
+                setIcon(rain_icon)
+
+            }
+            else if (res.data.weather[0].icon == "013d" || res.data.weather[0].icon == "013n") {
+                setIcon(snow_icon)
+
+            }
+            else if (res.data.weather[0].icon == "011d" || res.data.weather[0].icon == "011n") {
+                setIcon(thunderstorm_icon)
+
+            }
+            else {
+                setIcon(clear_icon)
+
+            }
+
             setWeatherData(res.data)
 
         })
+        console.log(icon);
     }, [search])
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setSearch(value)
 
     }
-    console.log(search);
+
     return (
         <div className='p-4 sm:ml-64 flex justify-center items-center flex-col'>
 
@@ -42,39 +87,8 @@ const Home = () => {
                 </form>
             </div>
 
-            <div className="max-w-sm  border border-gray-500 w-96 rounded-lg bg-transparent backdrop-blur-sm ">
-
-                <div className=" flex justify-center items-center">
-                    <img className="" src={clear_icon} width={220} alt="Loading.." />
-                </div>
-
-                <div className="p-5">
-                    <div>
-                        <h1 className="mb-2 text-4xl text-center   text-white ">{weatherData?.main?.temp} °c </h1>
-                        <h1 className="mb-2 text-4xl text-center   text-white ">{weatherData?.name}  </h1>
-                    </div>
-
-                    <div className='flex flex-row justify-between items-end text-white'>
-                        <div className='flex flex-col items-center'>
-                            <div>
-                                <span>{weatherData?.main?.humidity}%</span>
-                                <img src="./humidity.png" alt="" width={25} />
-                            </div>
-                            <div><span className='text-xs'>Humidity</span></div>
-                        </div>
-                        <div className='flex flex-col items-center'>
-                            <div className='flex flex-row gap-1'>
-                                <img src="./wind.png" alt="" width={23} />
-                                <span className='text-sm'>{weatherData?.wind?.speed}km/h</span>
-                            </div>
-                            <div>
-                                <span className='text-xs'>Wind Speed</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            {/* Weather Card */}
+            <WeatherCard weatherData={weatherData} icon={icon} />
 
 
         </div>
