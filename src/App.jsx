@@ -14,6 +14,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from './config/firebase-config';
 import Users from './components/Users/Users'
 import EditModel from './components/EditModel/EditModel'
+import backgroundImgae from "./assets/image/img-1.jpg"
 
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
 
 
   return (
-    <div className='bg-[url(./img-1.jpg)]  w-full h-screen bg-cover' style={{}}>
+    <div className={`bg-[url(./img-1.jpg)]  w-full h-screen bg-cover`} style={{}}>
       <BrowserRouter>
       <Routes>
         <Route element={<Layout />} >
