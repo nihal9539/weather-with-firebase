@@ -23,7 +23,7 @@ function App() {
 
 
   return (
-    <div className={`bg-[url(./img-1.jpg)]  w-full h-screen bg-cover`} style={{}}>
+    <div className={`bg-[url(./assets/image/img-1.jpg)]  w-full h-screen bg-cover`} style={{}}>
       <BrowserRouter>
       <Routes>
         <Route element={<Layout />} >
